@@ -86,6 +86,7 @@ from ansible.module_utils.connection import exec_command
 from ansible.module_utils.ios import load_config, run_commands
 from ansible.module_utils.ios import ios_argument_spec, check_args
 import re
+import logging
 
 def map_obj_to_commands(updates, module):
     commands = list()
@@ -106,13 +107,21 @@ def map_obj_to_commands(updates, module):
     return commands
 
 def map_config_to_obj(module):
-    rc, out, err = exec_command(module, 'show banner %s' % module.params['banner'])
+    cmd = 'show banner %s' % module.params['banner']
+    logging.debug('TROUBLESHOOT> cmd: ' + repr(cmd))
+    rc, out, err = exec_command(module, cmd)
+    logging.debug('TROUBLESHOOT> rc: %s' % str(rc))
+    logging.debug('TROUBLESHOOT> out: ' + repr(out))
+    logging.debug('TROUBLESHOOT> err: ' + repr(err))
     if rc == 0:
         output = out
     else:
-        rc, out, err = exec_command(module,
-                                    'show running-config | begin banner %s'
-                                    % module.params['banner'])
+        cmd = 'show running-config | begin banner %s' % module.params['banner']
+        logging.debug('TROUBLESHOOT> cmd: ' + repr(cmd))
+        rc, out, err = exec_command(module, cmd)
+        logging.debug('TROUBLESHOOT> rc: %s' % str(rc))
+        logging.debug('TROUBLESHOOT> out: ' + repr(out))
+        logging.debug('TROUBLESHOOT> err: ' + repr(err))
         output = re.search('\^C(.*)\^C', out, re.S).group(1).strip()
     obj = {'banner': module.params['banner'], 'state': 'absent'}
     if output:
@@ -134,6 +143,8 @@ def map_params_to_obj(module):
 def main():
     """ main entry point for module execution
     """
+    logging.basicConfig(filename='/tmp/ansible.out', level=logging.DEBUG,
+                        filemode='w')
     argument_spec = dict(
         banner=dict(required=True, choices=['login', 'motd']),
         text=dict(),
