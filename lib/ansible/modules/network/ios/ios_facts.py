@@ -149,6 +149,7 @@ from ansible.module_utils.ios import ios_argument_spec, check_args
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.six import iteritems
 from ansible.module_utils.six.moves import zip
+import q
 
 
 class FactsBase(object):
@@ -274,6 +275,7 @@ class Interfaces(FactsBase):
             if neighbors:
                 self.facts['neighbors'] = self.parse_neighbors(neighbors[0])
 
+    @q
     def populate_interfaces(self, interfaces):
         facts = dict()
         for key, value in iteritems(interfaces):
@@ -297,6 +299,7 @@ class Interfaces(FactsBase):
             facts[key] = intf
         return facts
 
+    @q
     def populate_ipv6_interfaces(self, data):
         for key, value in iteritems(data):
             self.facts['interfaces'][key]['ipv6'] = list()
@@ -313,6 +316,7 @@ class Interfaces(FactsBase):
         else:
             self.facts['all_ipv6_addresses'].append(address)
 
+    @q
     def parse_neighbors(self, neighbors):
         facts = dict()
         for entry in neighbors.split('------------------------------------------------'):
@@ -327,6 +331,7 @@ class Interfaces(FactsBase):
             facts[intf].append(fact)
         return facts
 
+    @q
     def parse_interfaces(self, data):
         parsed = dict()
         key = ''
