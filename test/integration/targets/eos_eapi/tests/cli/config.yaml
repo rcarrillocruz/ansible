@@ -6,20 +6,20 @@
   eos_config:
     lines: no management api http-commands
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
   connection: local
 
 - name: Get running-config
   eos_command:
     commands: show running-config
-    provider: "{{ cli }}"
+    authorize: yes
   register: config
   connection: local
 
 - name: Set config
   eos_eapi:
     config: "{{ config.stdout[0] }}"
-    provider: "{{ cli }}"
+    authorize: yes
   register: config
   connection: local
 
@@ -32,14 +32,14 @@
 - name: Get running-config again
   eos_command:
     commands: show running-config
-    provider: "{{ cli }}"
+    authorize: yes
   register: config
   connection: local
 
 - name: Set config
   eos_eapi:
     config: "{{ config.stdout[0] }}"
-    provider: "{{ cli }}"
+    authorize: yes
   register: config
   connection: local
 

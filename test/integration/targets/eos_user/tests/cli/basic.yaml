@@ -5,7 +5,7 @@
       - no username ansibletest1
       - no username ansibletest2
       - no username ansibletest3
-    provider: "{{ cli }}"
+    authorize: yes
 
 - name: Create user
   eos_user:
@@ -15,7 +15,7 @@
     state: present
     configured_password: test1
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -34,7 +34,7 @@
     authorize: yes
     state: present
     role: network-operator
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -53,7 +53,7 @@
     privilege: 15
     state: present
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   ignore_errors: yes
   register: result
 
@@ -69,4 +69,4 @@
       - no username ansibletest1
       - no username ansibletest2
       - no username ansibletest3
-    provider: "{{ cli }}"
+    authorize: yes

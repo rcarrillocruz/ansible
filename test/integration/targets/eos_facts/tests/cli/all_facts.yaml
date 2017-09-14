@@ -4,7 +4,7 @@
 
 - name: test getting all facts
   eos_facts:
-    provider: "{{ cli }}"
+    authorize: yes
     gather_subset:
       - all
   register: result

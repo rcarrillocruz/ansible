@@ -5,7 +5,7 @@
 - name: Set invalid VRF
   eos_eapi:
     vrf: foobar
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
   ignore_errors: true
@@ -21,7 +21,7 @@
 - name: Set VRF to default
   eos_eapi:
     vrf: default
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
   ignore_errors: true
@@ -30,7 +30,7 @@
 - name: Set VRF to default again (idempotent)
   eos_eapi:
     vrf: default
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
 
@@ -46,7 +46,7 @@
 - name: DEBUG show vrf
   eos_command:
     commands: show vrf
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
   when: false

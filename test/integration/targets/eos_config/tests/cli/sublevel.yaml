@@ -5,13 +5,13 @@
   eos_config:
     lines: no vlan 10
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
 
 - name: configure sub level command
   eos_config:
     lines: name test
     parents: vlan 10
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -24,7 +24,7 @@
   eos_config:
     lines: name test
     parents: vlan 10
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -35,7 +35,7 @@
   eos_config:
     lines: no vlan 10
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
 
 
 - debug: msg="END cli/sublevel.yaml"

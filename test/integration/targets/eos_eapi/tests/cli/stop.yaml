@@ -3,14 +3,14 @@
 - name: Set state to stopped
   eos_eapi:
     state: stopped
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
 
 - eos_command:
     commands:
       - show management api http-commands | json
-    provider: "{{ cli }}"
+    authorize: yes
   register: http_config
   connection: local
 
@@ -24,7 +24,7 @@
 - name: Set state to stopped again
   eos_eapi:
     state: stopped
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
 

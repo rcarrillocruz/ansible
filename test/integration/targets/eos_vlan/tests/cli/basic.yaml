@@ -7,7 +7,7 @@
       - no vlan 4001
       - no vlan 4002
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
 
 - name: setup - remove switchport settings on interface Ethernet1 used in test
   eos_config:
@@ -16,7 +16,7 @@
       - no switchport access vlan 4000
     parents: interface Ethernet1
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
 
 - name: setup - remove switchport settings on interface Ethernet2 used in test
   eos_config:
@@ -25,7 +25,7 @@
       - no switchport access vlan 4000
     parents: interface Ethernet2
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
 
 - name: Create vlan
   eos_vlan:
@@ -33,7 +33,7 @@
     name: vlan-4000
     state: present
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -50,7 +50,7 @@
     name: vlan-4000
     state: present
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -66,7 +66,7 @@
     name: vlan-4000-new
     state: suspend
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -84,7 +84,7 @@
     name: vlan-4000-new
     state: suspend
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -99,7 +99,7 @@
     vlan_id: 4000
     state: active
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -118,7 +118,7 @@
       - Ethernet1
       - Ethernet2
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -140,7 +140,7 @@
       - Ethernet1
       - Ethernet2
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -157,7 +157,7 @@
     interfaces:
       - Ethernet1
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -176,7 +176,7 @@
     interfaces:
       - Ethernet1
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -193,7 +193,7 @@
       - {vlan_id: 4001, name: vlan-4001}
     state: present
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -212,7 +212,7 @@
       - {vlan_id: 4001, name: vlan-4001}
     state: present
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -230,7 +230,7 @@
     state: present
     purge: yes
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -250,7 +250,7 @@
     state: present
     purge: yes
     authorize: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:

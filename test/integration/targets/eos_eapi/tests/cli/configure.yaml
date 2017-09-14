@@ -7,14 +7,14 @@
     https_port: 4443
     enable_local_http: yes
     local_http_port: 8181
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
 
 - eos_command:
     commands:
       - show management api http-commands | json
-    provider: "{{ cli }}"
+    authorize: yes
   register: http_config
   connection: local
 
@@ -31,7 +31,7 @@
     https_port: 4443
     enable_local_http: yes
     local_http_port: 8181
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
 

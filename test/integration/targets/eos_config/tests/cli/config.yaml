@@ -5,19 +5,19 @@
   eos_config:
     lines: hostname {{ inventory_hostname_short }}
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
 
 - name: get current running-config
   eos_command:
     commands: show running-config
-    provider: "{{ cli }}"
+    authorize: yes
   register: config
 
 - name: configure hostname
   eos_config:
     lines: hostname foo
     config: "{{ config.stdout[0] }}"
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -28,14 +28,14 @@
 - name: get current running-config
   eos_command:
     commands: show running-config
-    provider: "{{ cli }}"
+    authorize: yes
   register: config
 
 - name: configure hostname again
   eos_config:
     lines: hostname foo
     config: "{{ config.stdout[0] }}"
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -46,6 +46,6 @@
   eos_config:
     lines: hostname {{ inventory_hostname_short }}
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
 
 - debug: msg="END cli/config.yaml"

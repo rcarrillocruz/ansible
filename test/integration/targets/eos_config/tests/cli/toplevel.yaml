@@ -5,12 +5,12 @@
   eos_config:
     lines: hostname veos01
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
 
 - name: configure top level command
   eos_config:
     lines: hostname foo
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -21,7 +21,7 @@
 - name: configure top level command idempotent check
   eos_config:
     lines: hostname foo
-    provider: "{{ cli }}"
+    authorize: yes
   register: result
 
 - assert:
@@ -32,6 +32,6 @@
   eos_config:
     lines: hostname veos01
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
 
 - debug: msg="END cli/toplevel.yaml"

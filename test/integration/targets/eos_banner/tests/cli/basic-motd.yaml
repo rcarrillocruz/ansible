@@ -3,7 +3,6 @@
   eos_config:
     lines: no banner motd
     authorize: yes
-    provider: "{{ cli }}"
 
 - name: Create motd
   eos_banner:
@@ -14,7 +13,6 @@
       string
     state: present
     authorize: yes
-    provider: "{{ cli }}"
   register: result
 
 - assert:
@@ -34,7 +32,6 @@
       string
     state: present
     authorize: yes
-    provider: "{{ cli }}"
   register: result
 
 - assert:
@@ -53,7 +50,6 @@
       string
     state: absent
     authorize: yes
-    provider: "{{ cli }}"
   register: result
 
 - assert:
@@ -72,7 +68,6 @@
       string
     state: absent
     authorize: yes
-    provider: "{{ cli }}"
   register: result
 
 - assert:

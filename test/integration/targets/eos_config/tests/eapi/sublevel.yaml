@@ -36,6 +36,6 @@
   eos_config:
     lines: no ip access-list test
     match: none
-    provider: "{{ cli }}"
+    authorize: yes
 
 - debug: msg="END eapi/sublevel.yaml"

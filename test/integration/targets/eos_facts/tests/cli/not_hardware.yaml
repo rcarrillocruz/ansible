@@ -4,7 +4,7 @@
 
 - name: test not hardware
   eos_facts:
-    provider: "{{ cli }}"
+    authorize: yes
     gather_subset:
       - "!hardware"
   register: result

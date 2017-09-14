@@ -6,14 +6,14 @@
     enable_https: yes
     enable_local_http: yes
     enable_socket: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
 
 - eos_command:
     commands:
       - show management api http-commands | json
-    provider: "{{ cli }}"
+    authorize: yes
   register: http_config
   connection: local
 
@@ -34,7 +34,7 @@
     enable_https: yes
     enable_local_http: yes
     enable_socket: yes
-    provider: "{{ cli }}"
+    authorize: yes
   register: eos_eapi_output
   connection: local
 
